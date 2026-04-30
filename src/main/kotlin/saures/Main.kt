@@ -21,5 +21,5 @@ fun main() {
 
     val client      = SauresApiClientImpl(config)
     val syncService = SyncService(client)
-    startServer(config.serverPort, syncService)
+    startServer(config, syncService)
 }

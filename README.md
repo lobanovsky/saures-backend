@@ -27,10 +27,11 @@
 |---|---|---|
 | `SAURES_EMAIL` | — | Логин от личного кабинета SAURES (обязательно) |
 | `SAURES_PASSWORD` | — | Пароль (обязательно) |
-| `SAURES_DB_URL` | `jdbc:postgresql://localhost:5456/saures` | JDBC URL базы данных |
-| `SAURES_DB_USER` | `saures` | Пользователь БД |
-| `SAURES_DB_PASSWORD` | `saures` | Пароль БД |
+| `DB_URL` | `jdbc:postgresql://localhost:5456/saures` | JDBC URL базы данных |
+| `DB_USER` | `saures` | Пользователь БД |
+| `DB_PASSWORD` | `saures` | Пароль БД |
 | `SERVER_PORT` | `8080` | Порт HTTP-сервера |
+| `ALLOWED_ORIGINS` | `http://localhost:3000,http://localhost:5173,http://localhost:8080` | Разрешённые CORS origins через запятую |
 
 ### Запуск
 

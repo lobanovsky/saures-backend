@@ -7,9 +7,16 @@ data class Config(
     val dbUrl: String = "jdbc:postgresql://localhost:5456/saures",
     val dbUser: String = "saures",
     val dbPassword: String = "saures",
-    val serverPort: Int = 8080
+    val serverPort: Int = 8080,
+    val allowedOrigins: List<String> = DEFAULT_ALLOWED_ORIGINS
 ) {
     companion object {
+        val DEFAULT_ALLOWED_ORIGINS = listOf(
+            "http://localhost:3000",
+            "http://localhost:5173",
+            "http://localhost:8080"
+        )
+
         fun fromEnvironment(): Config {
             val email    = System.getenv("SAURES_EMAIL")
                 ?: error("SAURES_EMAIL environment variable is not set")
@@ -21,8 +28,18 @@ data class Config(
                 dbUrl       = System.getenv("DB_URL")      ?: "jdbc:postgresql://localhost:5456/saures",
                 dbUser      = System.getenv("DB_USER")     ?: "saures",
                 dbPassword  = System.getenv("DB_PASSWORD") ?: "saures",
-                serverPort  = System.getenv("SERVER_PORT")?.toIntOrNull() ?: 8080
+                serverPort  = System.getenv("SERVER_PORT")?.toIntOrNull() ?: 8080,
+                allowedOrigins = parseAllowedOrigins(System.getenv("ALLOWED_ORIGINS"))
             )
         }
+
+        internal fun parseAllowedOrigins(value: String?): List<String> =
+            value
+                ?.split(",")
+                ?.map { it.trim().trimEnd('/') }
+                ?.filter { it.isNotBlank() }
+                ?.distinct()
+                ?.takeIf { it.isNotEmpty() }
+                ?: DEFAULT_ALLOWED_ORIGINS
     }
 }
