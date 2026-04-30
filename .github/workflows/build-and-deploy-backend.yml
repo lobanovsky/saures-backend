@@ -65,6 +65,8 @@ jobs:
           echo "DB_URL=${{ secrets.DB_URL }}" >> .env
           echo "DB_USER=${{ secrets.DB_USER }}" >> .env
           echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+          
+          echo "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS }}" >> .env
 
       - name: copy files to host
         uses: appleboy/scp-action@v0.1.7

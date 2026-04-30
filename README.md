@@ -31,7 +31,13 @@
 | `DB_USER` | `saures` | Пользователь БД |
 | `DB_PASSWORD` | `saures` | Пароль БД |
 | `SERVER_PORT` | `8080` | Порт HTTP-сервера |
-| `ALLOWED_ORIGINS` | `http://localhost:3000,http://localhost:5173,http://localhost:8080` | Разрешённые CORS origins через запятую |
+| `ALLOWED_ORIGINS` | `http://localhost:3000,http://localhost:5173,http://localhost:8080,https://saures.housekpr.ru` | Разрешённые CORS origins через запятую |
+
+Для прода укажите origin фронтенда:
+
+```bash
+ALLOWED_ORIGINS=https://saures.housekpr.ru
+```
 
 ### Запуск
 

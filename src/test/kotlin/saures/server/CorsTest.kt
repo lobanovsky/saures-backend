@@ -1,6 +1,7 @@
 package saures.server
 
 import io.ktor.client.request.header
+import io.ktor.client.request.get
 import io.ktor.client.request.options
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
@@ -17,7 +18,7 @@ import kotlin.test.assertEquals
 class CorsTest {
 
     @Test
-    fun `cors preflight for devices is allowed from configured origin`() = testApplication {
+    fun `cors preflight for devices is allowed from local configured origin`() = testApplication {
         application {
             configureServer(
                 Config(
@@ -36,6 +37,47 @@ class CorsTest {
 
         assertEquals(HttpStatusCode.OK, response.status)
         assertEquals("http://localhost:5173", response.headers[HttpHeaders.AccessControlAllowOrigin])
+    }
+
+    @Test
+    fun `cors preflight for devices is allowed from production default origin`() = testApplication {
+        application {
+            configureServer(
+                Config(
+                    email = "user@example.com",
+                    password = "password"
+                ),
+                SyncService(FakeSauresApiClient())
+            )
+        }
+
+        val response = client.options("/devices") {
+            header(HttpHeaders.Origin, "https://saures.housekpr.ru")
+            header(HttpHeaders.AccessControlRequestMethod, HttpMethod.Get.value)
+        }
+
+        assertEquals(HttpStatusCode.OK, response.status)
+        assertEquals("https://saures.housekpr.ru", response.headers[HttpHeaders.AccessControlAllowOrigin])
+    }
+
+    @Test
+    fun `cors request from unknown origin is forbidden`() = testApplication {
+        application {
+            configureServer(
+                Config(
+                    email = "user@example.com",
+                    password = "password",
+                    allowedOrigins = listOf("https://saures.housekpr.ru")
+                ),
+                SyncService(FakeSauresApiClient())
+            )
+        }
+
+        val response = client.get("/devices") {
+            header(HttpHeaders.Origin, "https://unknown.example")
+        }
+
+        assertEquals(HttpStatusCode.Forbidden, response.status)
     }
 }
 

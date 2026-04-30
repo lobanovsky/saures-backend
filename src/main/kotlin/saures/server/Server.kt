@@ -34,6 +34,7 @@ fun startServer(config: Config, syncService: SyncService) {
     syncService.startDailySchedule()
 
     logger.info("Server started on http://0.0.0.0:{}", config.serverPort)
+    logger.info("Allowed CORS origins: {}", config.allowedOrigins.joinToString(", "))
     logger.info("Routes: POST /sync, GET /readings, GET /devices, GET /readings/current, GET /health")
 
     embeddedServer(CIO, port = config.serverPort, host = "0.0.0.0") {

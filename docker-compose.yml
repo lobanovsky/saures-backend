@@ -10,6 +10,7 @@ services:
       DB_URL: ${DB_URL}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
     volumes:
       - ./logs:/app/logs
     ports:
