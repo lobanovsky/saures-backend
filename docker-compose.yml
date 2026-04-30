@@ -1,0 +1,24 @@
+services:
+  saures-backend:
+    image: lobanovsky/saures-backend:${TAG}
+    container_name: saures-backend
+    restart: always
+    environment:
+      TZ: Europe/Moscow
+      SAURES_EMAIL: ${SAURES_EMAIL}
+      SAURES_PASSWORD: ${SAURES_PASSWORD}
+      DB_URL: ${DB_URL}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./logs:/app/logs
+    ports:
+      - "8079:8080"
+    env_file:
+      - .env
+    networks:
+      - saures-network
+
+networks:
+  saures-network:
+    external: true

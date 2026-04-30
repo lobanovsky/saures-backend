@@ -1,0 +1,15 @@
+# Build
+build/
+.gradle/
+*.jar
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+
+# Project-local
+.claude/
+posgres.local/
+private/
+logs/
