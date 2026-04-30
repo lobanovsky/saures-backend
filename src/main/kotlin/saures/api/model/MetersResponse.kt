@@ -5,14 +5,14 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MetersResponse(
-    val data: MetersData,
-    val errors: List<String> = emptyList(),
+    val data: MetersData = MetersData(),
+    val errors: List<SauresApiError> = emptyList(),
     val status: String
 )
 
 @Serializable
 data class MetersData(
-    val sensors: List<Sensor>
+    val sensors: List<Sensor> = emptyList()
 )
 
 @Serializable

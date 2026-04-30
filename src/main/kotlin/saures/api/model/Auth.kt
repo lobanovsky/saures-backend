@@ -4,12 +4,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class LoginResponse(
-    val data: LoginData,
-    val errors: List<String> = emptyList(),
+    val data: LoginData = LoginData(),
+    val errors: List<SauresApiError> = emptyList(),
     val status: String
 )
 
 @Serializable
 data class LoginData(
-    val sid: String
+    val sid: String = ""
 )

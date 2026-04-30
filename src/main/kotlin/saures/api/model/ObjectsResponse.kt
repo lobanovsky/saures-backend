@@ -4,14 +4,14 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ObjectsResponse(
-    val data: ObjectsData,
-    val errors: List<String> = emptyList(),
+    val data: ObjectsData = ObjectsData(),
+    val errors: List<SauresApiError> = emptyList(),
     val status: String
 )
 
 @Serializable
 data class ObjectsData(
-    val objects: List<SauresObject>
+    val objects: List<SauresObject> = emptyList()
 )
 
 @Serializable

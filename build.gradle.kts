@@ -24,7 +24,9 @@ dependencies {
     // Ktor Server
     implementation("io.ktor:ktor-server-core:$ktorVersion")
     implementation("io.ktor:ktor-server-cio:$ktorVersion")
+    implementation("io.ktor:ktor-server-call-logging:$ktorVersion")
     implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
+    implementation("io.ktor:ktor-server-status-pages:$ktorVersion")
 
     // Shared JSON
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
@@ -42,6 +44,8 @@ dependencies {
 
     // Logging
     implementation("ch.qos.logback:logback-classic:1.4.14")
+
+    testImplementation(kotlin("test"))
 }
 
 application {
