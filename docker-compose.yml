@@ -1,6 +1,6 @@
 services:
   saures-backend:
-    image: lobanovsky/saures-backend:${TAG}
+    image: ${DOCKER_USERNAME}/saures-backend:${TAG}
     container_name: saures-backend
     restart: always
     environment:
@@ -17,8 +17,8 @@ services:
     env_file:
       - .env
     networks:
-      - saures-network
+      - housekpr-network
 
 networks:
-  saures-network:
+  housekpr-network:
     external: true
