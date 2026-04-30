@@ -57,6 +57,7 @@ jobs:
       - name: Create .env file for Docker
         run: |
           echo "TAG=${{ env.SHORT_SHA }}" > .env
+          echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> .env
           
           echo "SAURES_EMAIL=${{ secrets.SAURES_EMAIL }}" >> .env
           echo "SAURES_PASSWORD=${{ secrets.SAURES_PASSWORD }}" >> .env
