@@ -16,6 +16,7 @@ data class SyncedReading(
     val objectLabel: String,
     val objectAddress: String,
     val sensorSn: String,
+    val meterSn: String,
     val meterId: Int,
     val meterName: String,
     val meterType: String,
@@ -39,6 +40,7 @@ object ReadingsRepository {
                 it[objectLabel]   = row.objectLabel
                 it[objectAddress] = row.objectAddress
                 it[sensorSn]      = row.sensorSn
+                it[meterSn]       = row.meterSn
                 it[meterId]       = row.meterId
                 it[meterName]     = row.meterName
                 it[meterType]     = row.meterType
@@ -53,6 +55,7 @@ object ReadingsRepository {
                 objectLabel   = row.objectLabel,
                 objectAddress = row.objectAddress,
                 sensorSn      = row.sensorSn,
+                meterSn       = row.meterSn,
                 meterId       = row.meterId,
                 meterName     = row.meterName,
                 meterType     = row.meterType,
@@ -79,6 +82,7 @@ object ReadingsRepository {
                     objectLabel   = row[ReadingsTable.objectLabel],
                     objectAddress = row[ReadingsTable.objectAddress],
                     sensorSn      = row[ReadingsTable.sensorSn],
+                    meterSn       = row[ReadingsTable.meterSn],
                     meterId       = row[ReadingsTable.meterId],
                     meterName     = row[ReadingsTable.meterName],
                     meterType     = row[ReadingsTable.meterType],

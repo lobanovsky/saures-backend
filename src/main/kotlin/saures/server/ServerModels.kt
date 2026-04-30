@@ -11,7 +11,8 @@ data class DeviceResponse(
     val state: String,
     val objectLabel: String,
     val objectAddress: String,
-    val sensorSn: String
+    val sensorSn: String,
+    val meterSn: String
 )
 
 @Serializable
@@ -24,6 +25,7 @@ data class CurrentReadingResponse(
     val objectLabel: String,
     val objectAddress: String,
     val sensorSn: String,
+    val meterSn: String,
     val valuePrimary: Double,
     val valueExtra: String
 )

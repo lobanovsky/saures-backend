@@ -10,6 +10,7 @@ object ReadingsTable : Table("readings") {
     val objectLabel  = varchar("object_label",   255).default("")
     val objectAddress = varchar("object_address", 512).default("")
     val sensorSn     = varchar("sensor_sn",       64).default("")
+    val meterSn      = varchar("meter_sn",        64).default("")
     val meterId      = integer("meter_id")
     val meterName    = varchar("meter_name",     255).default("")
     val meterType    = varchar("meter_type",     255).default("")

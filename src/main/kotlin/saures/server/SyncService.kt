@@ -42,7 +42,8 @@ class SyncService(client: SauresApiClient) {
                 state         = row.state,
                 objectLabel   = row.objectLabel,
                 objectAddress = row.objectAddress,
-                sensorSn      = row.sensorSn
+                sensorSn      = row.sensorSn,
+                meterSn       = row.meterSn
             )
         }
 
@@ -59,6 +60,7 @@ class SyncService(client: SauresApiClient) {
                 objectLabel   = row.objectLabel,
                 objectAddress = row.objectAddress,
                 sensorSn      = row.sensorSn,
+                meterSn       = row.meterSn,
                 valuePrimary  = row.values.getOrElse(0) { 0.0 },
                 valueExtra    = row.values.drop(1).joinToString(";") { "%.3f".format(it) }
             )

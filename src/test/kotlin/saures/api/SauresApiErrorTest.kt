@@ -34,6 +34,35 @@ class SauresApiErrorTest {
     }
 
     @Test
+    fun `parses meter serial number from saures meters response`() {
+        val response = json.decodeFromString<MetersResponse>(
+            """
+            {
+              "status": "ok",
+              "errors": [],
+              "data": {
+                "sensors": [{
+                  "sn": "CONTROLLER-001",
+                  "meters": [{
+                    "meter_id": 30036,
+                    "meter_name": "ХВС",
+                    "sn": "METER-123456",
+                    "type": {"name": "Холодная вода", "number": 1},
+                    "state": {"name": "Ошибок нет", "number": 0},
+                    "vals": [1670.04],
+                    "unit": "м³"
+                  }]
+                }]
+              }
+            }
+            """.trimIndent()
+        )
+
+        assertEquals("CONTROLLER-001", response.data.sensors.single().serialNumber)
+        assertEquals("METER-123456", response.data.sensors.single().meters.single().sn)
+    }
+
+    @Test
     fun `wrong sid api error becomes WrongSidException`() {
         assertFailsWith<WrongSidException> {
             checkApiStatus("bad", listOf(SauresApiError("WrongSIDException", "Неверный sid")))

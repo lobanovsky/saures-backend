@@ -79,7 +79,8 @@ Server started on http://0.0.0.0:8080
     "state": "Ошибок нет",
     "objectLabel": "Квартира",
     "objectAddress": "Москва, 17-й проезд Марьиной рощи, д.1, кв. 94",
-    "sensorSn": "48E72975EC58"
+    "sensorSn": "48E72975EC58",
+    "meterSn": "12345678"
   }
 ]
 ```
@@ -103,6 +104,7 @@ Server started on http://0.0.0.0:8080
     "objectLabel": "Квартира",
     "objectAddress": "Москва, 17-й проезд Марьиной рощи, д.1, кв. 94",
     "sensorSn": "48E72975EC58",
+    "meterSn": "12345678",
     "valuePrimary": 687.27,
     "valueExtra": ""
   }
@@ -147,6 +149,7 @@ GET /readings/current/131305
       "objectLabel": "Квартира",
       "objectAddress": "Москва, 17-й проезд Марьиной рощи, д.1, кв. 94",
       "sensorSn": "48E72975EC58",
+      "meterSn": "12345678",
       "meterId": 131305,
       "meterName": "ГВС",
       "meterType": "Горячая вода",
@@ -210,6 +213,7 @@ CREATE TABLE readings (
     object_label   VARCHAR(255) DEFAULT '',
     object_address VARCHAR(512) DEFAULT '',
     sensor_sn      VARCHAR(64)  DEFAULT '',
+    meter_sn       VARCHAR(64)  DEFAULT '',
     meter_id       INTEGER NOT NULL,
     meter_name     VARCHAR(255) DEFAULT '',
     meter_type     VARCHAR(255) DEFAULT '',
