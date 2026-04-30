@@ -5,7 +5,7 @@ COPY . .
 
 RUN gradle jar
 
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=builder /app/build/libs/saures-backend-1.0.0.jar app.jar
 
