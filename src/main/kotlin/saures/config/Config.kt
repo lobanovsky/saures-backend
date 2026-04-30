@@ -18,9 +18,9 @@ data class Config(
             return Config(
                 email       = email,
                 password    = password,
-                dbUrl       = System.getenv("SAURES_DB_URL")      ?: "jdbc:postgresql://localhost:5456/saures",
-                dbUser      = System.getenv("SAURES_DB_USER")     ?: "saures",
-                dbPassword  = System.getenv("SAURES_DB_PASSWORD") ?: "saures",
+                dbUrl       = System.getenv("DB_URL")      ?: "jdbc:postgresql://localhost:5456/saures",
+                dbUser      = System.getenv("DB_USER")     ?: "saures",
+                dbPassword  = System.getenv("DB_PASSWORD") ?: "saures",
                 serverPort  = System.getenv("SERVER_PORT")?.toIntOrNull() ?: 8080
             )
         }
