@@ -186,6 +186,18 @@ GET /readings?meter_id=131305&limit=30
 
 ---
 
+### `GET /readings/latest`
+
+Возвращает последние сохранённые показания из базы данных, по одной записи на каждый `meterId`.
+
+```bash
+GET /readings/latest
+```
+
+Возвращает тот же формат элементов, что `GET /readings`.
+
+---
+
 ### `GET /health`
 
 **Ответ `200 OK`:**

@@ -32,6 +32,9 @@ class SyncService(client: SauresApiClient) {
     fun getReadings(limit: Int = 100, meterId: Int? = null): List<SyncedReading> =
         ReadingsRepository.findReadings(limit, meterId)
 
+    fun getLatestReadings(): List<SyncedReading> =
+        ReadingsRepository.findLatestReadingsByMeter()
+
     suspend fun getDevices(): List<DeviceResponse> =
         collector.collectCurrent().map { row ->
             DeviceResponse(

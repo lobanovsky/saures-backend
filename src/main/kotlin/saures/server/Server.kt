@@ -35,7 +35,7 @@ fun startServer(config: Config, syncService: SyncService) {
 
     logger.info("Server started on http://0.0.0.0:{}", config.serverPort)
     logger.info("Allowed CORS origins: {}", config.allowedOrigins.joinToString(", "))
-    logger.info("Routes: POST /sync, GET /readings, GET /devices, GET /readings/current, GET /health")
+    logger.info("Routes: POST /sync, GET /readings, GET /readings/latest, GET /devices, GET /readings/current, GET /health")
 
     embeddedServer(CIO, port = config.serverPort, host = "0.0.0.0") {
         configureServer(config, syncService, logger)
@@ -93,6 +93,10 @@ fun Application.configureServer(
             val limit   = call.request.queryParameters["limit"]?.toIntOrNull() ?: 100
             val meterId = call.request.queryParameters["meter_id"]?.toIntOrNull()
             call.respond(syncService.getReadings(limit, meterId))
+        }
+
+        get("/readings/latest") {
+            call.respond(syncService.getLatestReadings())
         }
 
         get("/devices") {

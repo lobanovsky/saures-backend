@@ -29,6 +29,7 @@ data class SyncedReading(
 object ReadingsRepository {
 
     private val fmt = DateTimeFormatter.ISO_LOCAL_DATE_TIME
+    private const val LATEST_READINGS_SCAN_LIMIT = 5_000
 
     fun insertReadings(rows: List<ReadingRow>): List<SyncedReading> = transaction {
         val now = LocalDateTime.now()
@@ -93,4 +94,12 @@ object ReadingsRepository {
                 )
             }
     }
+
+    fun findLatestReadingsByMeter(): List<SyncedReading> =
+        latestByMeter(findReadings(LATEST_READINGS_SCAN_LIMIT))
+
+    internal fun latestByMeter(readings: List<SyncedReading>): List<SyncedReading> =
+        readings
+            .distinctBy { it.meterId }
+            .sortedWith(compareBy<SyncedReading> { it.objectLabel }.thenBy { it.meterName })
 }
